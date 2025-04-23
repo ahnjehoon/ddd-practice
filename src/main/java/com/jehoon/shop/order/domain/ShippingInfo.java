@@ -1,5 +1,6 @@
 package com.jehoon.shop.order.domain;
 
+import com.jehoon.shop.common.model.Address;
 import jakarta.persistence.*;
 
 @Embeddable

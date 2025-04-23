@@ -1,14 +1,13 @@
 package com.jehoon.shop.order.domain;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
+@Access(AccessType.FIELD)
 public class Order {
     @EmbeddedId
-    private OrderNumber number;
+    private OrderNo number;
 
     private OrderState state;
     private ShippingInfo shippingInfo;
@@ -30,5 +29,10 @@ public class Order {
     private void setShippingInfo(ShippingInfo shippingInfo) {
         if (shippingInfo == null) throw new IllegalArgumentException("no shipping info");
         this.shippingInfo = shippingInfo;
+    }
+
+    public void cancel() {
+        verifyNotYetShipped();
+        this.state = OrderState.CANCELED;
     }
 }

@@ -7,14 +7,14 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class OrderNumber implements Serializable {
+public class OrderNo implements Serializable {
     @Column(name = "order_number")
     private String number;
 
-    protected OrderNumber() {
+    protected OrderNo() {
     }
 
-    public OrderNumber(String number) {
+    public OrderNo(String number) {
         this.number = number;
     }
 
@@ -25,7 +25,7 @@ public class OrderNumber implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        OrderNumber that = (OrderNumber) o;
+        OrderNo that = (OrderNo) o;
         return Objects.equals(number, that.number);
     }
 
