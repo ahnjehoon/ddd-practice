@@ -20,8 +20,8 @@ subprojects {
     sourceCompatibility = '17'
 
     dependencies {
-        compileOnly 'org.projectlombok:lombok'
-        annotationProcessor 'org.projectlombok:lombok'
+        // compileOnly 'org.projectlombok:lombok'
+        // annotationProcessor 'org.projectlombok:lombok'
     }
     
     // plain.jar 생성 방지
