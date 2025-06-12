@@ -5,7 +5,7 @@ plugins {
 }
 
 allprojects {
-    group = 'com.jehoon.food.order'
+    group = 'com.jehoon.food'
     version = '1.0.0'
 
 	repositories {
@@ -20,12 +20,7 @@ subprojects {
     sourceCompatibility = '17'
 
     dependencies {
-        // compileOnly 'org.projectlombok:lombok'
-        // annotationProcessor 'org.projectlombok:lombok'
-    }
-    
-    // plain.jar 생성 방지
-    jar {
-        enabled = false
+        compileOnly 'org.projectlombok:lombok:1.18.38'
+        annotationProcessor 'org.projectlombok:lombok:1.18.38'
     }
 }

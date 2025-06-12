@@ -1,4 +1,4 @@
-package com.jehoon.food.order.domain.exception;
+package com.jehoon.food.domain.exception;
 
 public class DomainException extends RuntimeException {
     public DomainException(String message) {
