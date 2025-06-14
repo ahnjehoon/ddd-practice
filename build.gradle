@@ -1,7 +1,7 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.4.6' apply false
-	id 'io.spring.dependency-management' version '1.1.7' apply false
+    id 'java'
+    id 'org.springframework.boot' version '3.4.6' apply false
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 allprojects {
@@ -19,9 +19,16 @@ subprojects {
 
     sourceCompatibility = '17'
 
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:3.4.6"
+        }
+    }
+
     dependencies {
-        compileOnly 'org.projectlombok:lombok:1.18.38'
-        annotationProcessor 'org.projectlombok:lombok:1.18.38'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        implementation 'org.slf4j:slf4j-api'
     }
 
     tasks.withType(JavaCompile).configureEach {
