@@ -23,4 +23,8 @@ subprojects {
         compileOnly 'org.projectlombok:lombok:1.18.38'
         annotationProcessor 'org.projectlombok:lombok:1.18.38'
     }
+
+    tasks.withType(JavaCompile).configureEach {
+		options.encoding = 'UTF-8'
+	}
 }
