@@ -20,14 +20,14 @@ import lombok.Getter;
 @Getter
 @Builder
 public class Order extends AggregateRoot<OrderId> {
-    private static final String ERROR_STATE_PAY = "결제를 진행할 수 없는 주문 상태입니다.";
-    private static final String ERROR_STATE_APPROVE = "승인할 수 없는 주문 상태입니다.";
-    private static final String ERROR_STATE_INIT_CANCEL = "취소 요청을 진행할 수 없는 주문 상태입니다.";
-    private static final String ERROR_STATE_CANCEL = "주문을 취소할 수 없는 상태입니다.";
-    private static final String ERROR_STATE_INITIALIZE = "주문이 이미 초기화되었거나 잘못된 상태입니다.";
-    private static final String ERROR_TOTAL_PRICE_INVALID = "총 금액은 0보다 커야 합니다.";
-    private static final String ERROR_TOTAL_PRICE_MISMATCH = "총 금액(%s)이 주문 항목 합계(%s)와 일치하지 않습니다.";
-    private static final String ERROR_ITEM_PRICE_INVALID = "주문 항목의 가격(%s)이 상품(%s)에 대해 유효하지 않습니다.";
+    public static final String ERROR_STATE_PAY = "결제를 진행할 수 없는 주문 상태입니다.";
+    public static final String ERROR_STATE_APPROVE = "승인할 수 없는 주문 상태입니다.";
+    public static final String ERROR_STATE_INIT_CANCEL = "취소 요청을 진행할 수 없는 주문 상태입니다.";
+    public static final String ERROR_STATE_CANCEL = "주문을 취소할 수 없는 상태입니다.";
+    public static final String ERROR_STATE_INITIALIZE = "주문이 이미 초기화되었거나 잘못된 상태입니다.";
+    public static final String ERROR_TOTAL_PRICE_INVALID = "총 금액은 0보다 커야 합니다.";
+    public static final String ERROR_TOTAL_PRICE_MISMATCH = "총 금액(%.2f)이 주문 항목 합계(%.2f)와 일치하지 않습니다.";
+    public static final String ERROR_ITEM_PRICE_INVALID = "주문 항목의 가격(%.2f)이 상품(%s)에 대해 유효하지 않습니다.";
 
     private final CustomerId customerId;
     private final RestaurantId restaurantId;

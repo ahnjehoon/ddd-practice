@@ -19,12 +19,12 @@ public class OrderDomainServiceImpl implements OrderDomainService {
 
     private static final String UTC = "UTC";
 
-    private static final String ORDER_INITIATED_LOG = "주문 아이디: {} 의 주문이 시작되었습니다.";
-    private static final String ORDER_PAID_LOG = "주문 아이디: {} 의 주문이 결제되었습니다.";
-    private static final String ORDER_APPROVED_LOG = "주문 아이디: {} 의 주문이 승인되었습니다.";
-    private static final String ORDER_PAYMENT_CANCEL_LOG = "주문 아이디: {} 의 결제 취소가 진행 중입니다.";
-    private static final String ORDER_CANCELLED_LOG = "주문 아이디: {} 의 주문이 취소되었습니다.";
-    private static final String RESTAURANT_INACTIVE_LOG = "음식점 ID {}는 현재 활성화되지 않았습니다.";
+    public static final String ORDER_INITIATED_LOG = "주문 아이디: {} 의 주문이 시작되었습니다.";
+    public static final String ORDER_PAID_LOG = "주문 아이디: {} 의 주문이 결제되었습니다.";
+    public static final String ORDER_APPROVED_LOG = "주문 아이디: {} 의 주문이 승인되었습니다.";
+    public static final String ORDER_PAYMENT_CANCEL_LOG = "주문 아이디: {} 의 결제 취소가 진행 중입니다.";
+    public static final String ORDER_CANCELLED_LOG = "주문 아이디: {} 의 주문이 취소되었습니다.";
+    public static final String RESTAURANT_INACTIVE_LOG = "음식점 ID {}는 현재 활성화되지 않았습니다.";
 
     @Override
     public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
