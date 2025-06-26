@@ -35,3 +35,4 @@ out/
 
 ### VS Code ###
 .vscode/
+infrastructure/kafka/src/main/java/com/jehoon/food/kafka/model/order/avro

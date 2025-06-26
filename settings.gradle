@@ -2,6 +2,8 @@ rootProject.name = 'ddd-practice'
 
 include 'common:common-domain'
 
+include 'infrastructure:kafka'
+
 include 'order-service:order-container'
 include 'order-service:order-application'
 include 'order-service:order-dataaccess'

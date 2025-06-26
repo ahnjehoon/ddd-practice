@@ -1,0 +1,37 @@
+plugins {
+    id 'com.github.davidmc24.gradle.plugin.avro' version '1.9.1'
+}
+
+dependencies {
+    // 내부 프로젝트 모듈
+    implementation project(':order-service:order-domain:order-domain-core')
+    implementation project(':common:common-domain')
+
+    // Spring 관련 의존성
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.kafka:spring-kafka'
+    
+    // Kafka 및 Avro 관련
+    implementation 'org.apache.avro:avro:1.11.4'
+    implementation 'io.confluent:kafka-avro-serializer:7.8.3'
+    
+    // 테스트 의존성
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+} 
+
+// Avro 코드 생성 설정
+avro {
+    stringType = 'String'
+    outputCharacterEncoding = 'UTF-8'
+}
+
+// Avro 스키마 파일 위치 설정
+generateAvroJava {
+    source 'src/main/resources/avro'
+    outputDir file('src/main/java')
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
