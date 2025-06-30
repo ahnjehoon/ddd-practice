@@ -6,10 +6,10 @@
 ## 프로젝트 구조
 ```
 food-order/
-├── order-service         # (작업중)주문 처리 서비스
-├── restaurant-service    # (예정)레스토랑 및 메뉴 관리 서비스
-├── payment-service       # (예정)결제 처리 서비스
-└── customer-service      # (예정)고객 정보 관리 서비스
+├── order-service         # 주문 처리 서비스
+├── restaurant-service    # 레스토랑 및 메뉴 관리 서비스
+├── payment-service       # 결제 처리 서비스
+└── customer-service      # 고객 정보 관리 서비스
 ```
 
 ### 각 도메인별 기본 구조
@@ -18,7 +18,7 @@ graph TD
     subgraph "#DOMAIN#"
         #DOMAIN#-container
         #DOMAIN#-application
-        #DOMAIN#-dataaccess
+        #DOMAIN#-data-access
         #DOMAIN#-messaging
         
         subgraph "#DOMAIN# LAYER"
@@ -29,13 +29,13 @@ graph TD
 
     %% 의존성 관계
     #DOMAIN#-container --> #DOMAIN#-application
-    #DOMAIN#-container --> #DOMAIN#-dataaccess
+    #DOMAIN#-container --> #DOMAIN#-data-access
     #DOMAIN#-container --> #DOMAIN#-messaging
     #DOMAIN#-container --> #DOMAIN#-domain-core
     #DOMAIN#-container --> #DOMAIN#-application-service
     
     #DOMAIN#-application --> #DOMAIN#-application-service
-    #DOMAIN#-dataaccess --> #DOMAIN#-application-service
+    #DOMAIN#-data-access --> #DOMAIN#-application-service
     #DOMAIN#-messaging --> #DOMAIN#-application-service
     
     #DOMAIN#-application-service --> #DOMAIN#-domain-core
