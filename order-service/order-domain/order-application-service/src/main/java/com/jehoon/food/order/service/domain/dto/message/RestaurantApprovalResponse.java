@@ -2,6 +2,7 @@ package com.jehoon.food.order.service.domain.dto.message;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.UUID;
 
 import com.jehoon.food.domain.valueobject.OrderApprovalStatus;
 
@@ -13,10 +14,10 @@ import lombok.Getter;
 @Builder
 @AllArgsConstructor
 public class RestaurantApprovalResponse {
-    private String id;
-    private String sagaId;
-    private String orderId;
-    private String restaurantId;
+    private UUID id;
+    private UUID sagaId;
+    private UUID orderId;
+    private UUID restaurantId;
     private Instant createdAt;
     private OrderApprovalStatus orderApprovalStatus;
     private List<String> failureMessages;

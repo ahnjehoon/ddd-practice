@@ -18,8 +18,8 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Builder
 public class Order extends AggregateRoot<OrderId> {
+    public static final String FAILURE_MESSAGE_DELIMITER = ",";
     public static final String ERROR_STATE_PAY = "결제를 진행할 수 없는 주문 상태입니다.";
     public static final String ERROR_STATE_APPROVE = "승인할 수 없는 주문 상태입니다.";
     public static final String ERROR_STATE_INIT_CANCEL = "취소 요청을 진행할 수 없는 주문 상태입니다.";
@@ -31,13 +31,28 @@ public class Order extends AggregateRoot<OrderId> {
 
     private final CustomerId customerId;
     private final RestaurantId restaurantId;
-    private final StreetAddress streetAddress;
+    private final StreetAddress orderAddress;
     private final Money price;
     private final List<OrderItem> orderItems;
 
     private TrackingId trackingId;
     private OrderStatus orderStatus;
     private List<String> failureMessages;
+
+    @Builder
+    private Order(OrderId orderId, CustomerId customerId, RestaurantId restaurantId,
+            StreetAddress orderAddress, Money price, List<OrderItem> orderItems,
+            TrackingId trackingId, OrderStatus orderStatus, List<String> failureMessages) {
+        setId(orderId);
+        this.customerId = customerId;
+        this.restaurantId = restaurantId;
+        this.orderAddress = orderAddress;
+        this.price = price;
+        this.orderItems = orderItems;
+        this.trackingId = trackingId;
+        this.orderStatus = orderStatus;
+        this.failureMessages = failureMessages;
+    }
 
     public void initializeOrder() {
         setId(new OrderId(UUID.randomUUID()));
