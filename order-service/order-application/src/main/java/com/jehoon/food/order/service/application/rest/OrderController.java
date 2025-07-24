@@ -49,7 +49,7 @@ public class OrderController {
     }
 
     @GetMapping("/{trackingId}")
-    public ResponseEntity<TrackOrderResponse> trackOrder(@PathVariable UUID trackingId) {
+    public ResponseEntity<TrackOrderResponse> trackOrder(@PathVariable(value = "trackingId") UUID trackingId) {
 
         log.info(TRACK_ORDER_LOG, trackingId);
 

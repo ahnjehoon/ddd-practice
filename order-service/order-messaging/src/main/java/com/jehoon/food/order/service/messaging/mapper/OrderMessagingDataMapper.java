@@ -3,6 +3,8 @@ package com.jehoon.food.order.service.messaging.mapper;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import com.jehoon.food.kafka.model.order.avro.PaymentOrderStatus;
 import com.jehoon.food.kafka.model.order.avro.PaymentRequestAvroModel;
 import com.jehoon.food.kafka.model.order.avro.PaymentResponseAvroModel;
@@ -16,6 +18,7 @@ import com.jehoon.food.order.service.domain.event.OrderCancelledEvent;
 import com.jehoon.food.order.service.domain.event.OrderCreatedEvent;
 import com.jehoon.food.order.service.domain.event.OrderPaidEvent;
 
+@Component
 public class OrderMessagingDataMapper {
 
         public PaymentRequestAvroModel orderCreatedEventToPaymentRequestAvroModel(OrderCreatedEvent orderCreatedEvent) {
