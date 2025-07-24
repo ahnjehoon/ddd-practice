@@ -3,7 +3,6 @@ plugins {
 }
 
 dependencies {
-    api project(':infrastructure:kafka')
+    implementation project(':common:common-messaging:kafka')
     implementation project(':order-service:application')
-    
 }

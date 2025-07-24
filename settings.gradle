@@ -4,8 +4,8 @@ include 'common:common-domain'
 include 'common:common-data-access'
 include 'common:common-application'
 include 'common:common-messaging'
-
-include 'infrastructure:kafka'
+include 'common:common-messaging:core'
+include 'common:common-messaging:kafka'
 
 include 'order-service:bootstrap'
 include 'order-service:domain'

@@ -1,4 +1,4 @@
-package com.jehoon.food.kafka.producer;
+package com.jehoon.food.kafka.publisher;
 
 import java.io.Serializable;
 import java.util.concurrent.CompletableFuture;
@@ -11,6 +11,7 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 
 import com.jehoon.food.kafka.exception.KafkaProducerException;
+import com.jehoon.food.kafka.producer.KafkaProducer;
 
 import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;

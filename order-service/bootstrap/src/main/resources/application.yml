@@ -1,9 +1,11 @@
 server:
   port: 8080
 
-# logging:
-#   level:
-#     '[com.jehoon.food]': DEBUG
+logging:
+  level:
+    root: WARN
+    org.springframework.boot.web.embedded.tomcat.TomcatWebServer: INFO
+
 
 order-service:
   payment-request-topic-name: payment-request
