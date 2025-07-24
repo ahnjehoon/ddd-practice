@@ -1,4 +1,0 @@
-dependencies {
-    implementation project(':infrastructure:kafka')
-    implementation project(':order-service:order-domain:order-application-service')
-} 

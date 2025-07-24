@@ -1,5 +1,0 @@
-dependencies {
-    implementation project(':order-service:order-domain:order-application-service')
-    implementation project(':common:common-application')
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9'
-} 

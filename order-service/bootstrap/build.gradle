@@ -1,0 +1,16 @@
+plugins {
+    id 'org.springframework.boot'
+}
+
+dependencies {
+    implementation project(':order-service:application')
+    implementation project(':order-service:domain')
+    implementation project(':order-service:infrastructure:api')
+    implementation project(':order-service:infrastructure:persistence')
+    implementation project(':order-service:infrastructure:messaging-publisher')
+    implementation project(':order-service:infrastructure:messaging-subscriber')
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.postgresql:postgresql'
+}
