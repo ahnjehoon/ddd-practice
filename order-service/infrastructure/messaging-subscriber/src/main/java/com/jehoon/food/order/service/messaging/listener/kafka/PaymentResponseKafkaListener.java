@@ -9,10 +9,10 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import com.jehoon.food.kafka.consumer.KafkaConsumer;
-import com.jehoon.food.kafka.model.order.avro.PaymentResponseAvroModel;
-import com.jehoon.food.kafka.model.order.avro.PaymentStatus;
-import com.jehoon.food.order.service.domain.ports.input.message.listener.payment.PaymentResponseMessageListener;
+import com.jehoon.food.common.messaging.kafka.consumer.KafkaConsumer;
+import com.jehoon.food.common.messaging.kafka.model.order.avro.PaymentResponseAvroModel;
+import com.jehoon.food.common.messaging.kafka.model.order.avro.PaymentStatus;
+import com.jehoon.food.order.application.ports.input.message.listener.payment.PaymentResponseMessageListener;
 import com.jehoon.food.order.service.messaging.mapper.ResponseMessageMapper;
 
 import lombok.RequiredArgsConstructor;

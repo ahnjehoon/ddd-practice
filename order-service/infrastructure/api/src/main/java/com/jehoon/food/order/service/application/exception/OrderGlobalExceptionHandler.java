@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.jehoon.food.application.ErrorDTO;
 import com.jehoon.food.application.GlobalExceptionHandler;
-import com.jehoon.food.order.service.domain.exception.OrderDomainException;
-import com.jehoon.food.order.service.domain.exception.OrderNotFoundException;
+import com.jehoon.food.order.domain.exception.OrderDomainException;
+import com.jehoon.food.order.domain.exception.OrderNotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
 

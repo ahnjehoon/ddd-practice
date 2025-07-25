@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 import com.jehoon.food.order.service.dataaccess.restaurant.entity.RestaurantEntity;
 import com.jehoon.food.order.service.dataaccess.restaurant.mapper.RestaurantDataAccessMapper;
 import com.jehoon.food.order.service.dataaccess.restaurant.repository.RestaurantJpaRepository;
-import com.jehoon.food.order.service.domain.entity.Restaurant;
-import com.jehoon.food.order.service.domain.ports.output.repository.RestaurantRepository;
+import com.jehoon.food.order.domain.entity.Restaurant;
+import com.jehoon.food.order.application.ports.output.repository.RestaurantRepository;
 
 import lombok.RequiredArgsConstructor;
 

@@ -10,8 +10,8 @@ import com.jehoon.food.domain.valueobject.Money;
 import com.jehoon.food.domain.valueobject.ProductId;
 import com.jehoon.food.domain.valueobject.RestaurantId;
 import com.jehoon.food.order.service.dataaccess.restaurant.entity.RestaurantEntity;
-import com.jehoon.food.order.service.domain.entity.Product;
-import com.jehoon.food.order.service.domain.entity.Restaurant;
+import com.jehoon.food.order.domain.entity.Product;
+import com.jehoon.food.order.domain.entity.Restaurant;
 
 @Component
 public class RestaurantDataAccessMapper {

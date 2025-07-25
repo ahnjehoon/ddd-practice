@@ -1,10 +1,10 @@
-package com.jehoon.food.order.service.domain;
+package com.jehoon.food.order.service.messaging.listener;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import com.jehoon.food.order.service.domain.dto.message.RestaurantApprovalResponse;
-import com.jehoon.food.order.service.domain.ports.input.message.listener.restaurantapproval.RestaurantApprovalResponseMessageListener;
+import com.jehoon.food.order.application.dto.message.RestaurantApprovalResponse;
+import com.jehoon.food.order.application.ports.input.message.listener.restaurantapproval.RestaurantApprovalResponseMessageListener;
 
 import lombok.extern.slf4j.Slf4j;
 

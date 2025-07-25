@@ -1,16 +1,17 @@
 package com.jehoon.food.order.service.messaging.mapper;
 
-import com.jehoon.food.kafka.model.order.avro.PaymentOrderStatus;
-import com.jehoon.food.kafka.model.order.avro.PaymentRequestAvroModel;
-import com.jehoon.food.kafka.model.order.avro.RestaurantApprovalRequestAvroModel;
-import com.jehoon.food.order.service.domain.entity.Order;
-import com.jehoon.food.order.service.domain.event.OrderCancelledEvent;
-import com.jehoon.food.order.service.domain.event.OrderCreatedEvent;
-import com.jehoon.food.order.service.domain.event.OrderPaidEvent;
-import org.springframework.stereotype.Component;
-
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Component;
+
+import com.jehoon.food.common.messaging.kafka.model.order.avro.PaymentOrderStatus;
+import com.jehoon.food.common.messaging.kafka.model.order.avro.PaymentRequestAvroModel;
+import com.jehoon.food.common.messaging.kafka.model.order.avro.RestaurantApprovalRequestAvroModel;
+import com.jehoon.food.order.domain.entity.Order;
+import com.jehoon.food.order.domain.event.OrderCancelledEvent;
+import com.jehoon.food.order.domain.event.OrderCreatedEvent;
+import com.jehoon.food.order.domain.event.OrderPaidEvent;
 
 @Component
 public class RequestMessageMapper {
@@ -50,10 +51,11 @@ public class RequestMessageMapper {
                 .setSagaId(UUID.randomUUID())
                 .setOrderId(order.getId().getValue())
                 .setRestaurantId(order.getRestaurantId().getValue())
-                .setRestaurantOrderStatus(com.jehoon.food.kafka.model.order.avro.RestaurantOrderStatus
-                        .valueOf(order.getOrderStatus().name()))
+                .setRestaurantOrderStatus(
+                        com.jehoon.food.common.messaging.kafka.model.order.avro.RestaurantOrderStatus
+                                .valueOf(order.getOrderStatus().name()))
                 .setProducts(order.getOrderItems().stream()
-                        .map(orderItem -> com.jehoon.food.kafka.model.order.avro.Product
+                        .map(orderItem -> com.jehoon.food.common.messaging.kafka.model.order.avro.Product
                                 .newBuilder()
                                 .setId(orderItem.getProduct().getId().getValue()
                                         .toString())

@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jehoon.food.order.service.domain.dto.create.CreateOrderCommand;
-import com.jehoon.food.order.service.domain.dto.create.CreateOrderResponse;
-import com.jehoon.food.order.service.domain.dto.track.TrackOrderQuery;
-import com.jehoon.food.order.service.domain.dto.track.TrackOrderResponse;
-import com.jehoon.food.order.service.domain.ports.input.service.OrderApplicationService;
+import com.jehoon.food.order.application.dto.create.CreateOrderCommand;
+import com.jehoon.food.order.application.dto.create.CreateOrderResponse;
+import com.jehoon.food.order.application.dto.track.TrackOrderQuery;
+import com.jehoon.food.order.application.dto.track.TrackOrderResponse;
+import com.jehoon.food.order.application.ports.input.service.OrderApplicationService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -2,12 +2,12 @@ package com.jehoon.food.order.service.messaging.publisher.kafka;
 
 import org.springframework.stereotype.Component;
 
-import com.jehoon.food.kafka.model.order.avro.RestaurantApprovalRequestAvroModel;
-import com.jehoon.food.kafka.producer.KafkaProducer;
-import com.jehoon.food.kafka.util.KafkaMessageHelper;
-import com.jehoon.food.order.service.domain.config.OrderServiceConfigData;
-import com.jehoon.food.order.service.domain.event.OrderPaidEvent;
-import com.jehoon.food.order.service.domain.ports.output.message.publisher.restaurantapproval.OrderPaidRestaurantRequestMessagePublisher;
+import com.jehoon.food.common.messaging.kafka.model.order.avro.RestaurantApprovalRequestAvroModel;
+import com.jehoon.food.common.messaging.kafka.producer.KafkaProducer;
+import com.jehoon.food.common.messaging.kafka.util.KafkaMessageHelper;
+import com.jehoon.food.order.application.config.OrderServiceConfigData;
+import com.jehoon.food.order.application.ports.output.message.publisher.restaurantapproval.OrderPaidRestaurantRequestMessagePublisher;
+import com.jehoon.food.order.domain.event.OrderPaidEvent;
 import com.jehoon.food.order.service.messaging.mapper.RequestMessageMapper;
 
 import lombok.RequiredArgsConstructor;

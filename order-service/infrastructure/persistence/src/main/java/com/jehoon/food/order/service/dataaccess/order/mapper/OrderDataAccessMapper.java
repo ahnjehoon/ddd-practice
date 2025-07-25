@@ -1,6 +1,6 @@
 package com.jehoon.food.order.service.dataaccess.order.mapper;
 
-import static com.jehoon.food.order.service.domain.entity.Order.FAILURE_MESSAGE_DELIMITER;
+import static com.jehoon.food.order.domain.entity.Order.FAILURE_MESSAGE_DELIMITER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,12 +17,12 @@ import com.jehoon.food.domain.valueobject.RestaurantId;
 import com.jehoon.food.order.service.dataaccess.order.entity.OrderAddressEntity;
 import com.jehoon.food.order.service.dataaccess.order.entity.OrderEntity;
 import com.jehoon.food.order.service.dataaccess.order.entity.OrderItemEntity;
-import com.jehoon.food.order.service.domain.entity.Order;
-import com.jehoon.food.order.service.domain.entity.OrderItem;
-import com.jehoon.food.order.service.domain.entity.Product;
-import com.jehoon.food.order.service.domain.valueobject.OrderItemId;
-import com.jehoon.food.order.service.domain.valueobject.StreetAddress;
-import com.jehoon.food.order.service.domain.valueobject.TrackingId;
+import com.jehoon.food.order.domain.entity.Order;
+import com.jehoon.food.order.domain.entity.OrderItem;
+import com.jehoon.food.order.domain.entity.Product;
+import com.jehoon.food.order.domain.valueobject.OrderItemId;
+import com.jehoon.food.order.domain.valueobject.StreetAddress;
+import com.jehoon.food.order.domain.valueobject.TrackingId;
 
 @Component
 public class OrderDataAccessMapper {

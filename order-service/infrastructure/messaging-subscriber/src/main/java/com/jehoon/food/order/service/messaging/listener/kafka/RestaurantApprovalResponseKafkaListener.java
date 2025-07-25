@@ -9,11 +9,11 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import com.jehoon.food.kafka.consumer.KafkaConsumer;
-import com.jehoon.food.kafka.model.order.avro.OrderApprovalStatus;
-import com.jehoon.food.kafka.model.order.avro.RestaurantApprovalResponseAvroModel;
-import com.jehoon.food.order.service.domain.entity.Order;
-import com.jehoon.food.order.service.domain.ports.input.message.listener.restaurantapproval.RestaurantApprovalResponseMessageListener;
+import com.jehoon.food.common.messaging.kafka.consumer.KafkaConsumer;
+import com.jehoon.food.common.messaging.kafka.model.order.avro.OrderApprovalStatus;
+import com.jehoon.food.common.messaging.kafka.model.order.avro.RestaurantApprovalResponseAvroModel;
+import com.jehoon.food.order.application.ports.input.message.listener.restaurantapproval.RestaurantApprovalResponseMessageListener;
+import com.jehoon.food.order.domain.entity.Order;
 import com.jehoon.food.order.service.messaging.mapper.ResponseMessageMapper;
 
 import lombok.RequiredArgsConstructor;

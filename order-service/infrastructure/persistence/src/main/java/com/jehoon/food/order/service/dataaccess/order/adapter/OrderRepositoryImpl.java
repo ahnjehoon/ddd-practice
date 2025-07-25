@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 import com.jehoon.food.domain.valueobject.OrderId;
 import com.jehoon.food.order.service.dataaccess.order.mapper.OrderDataAccessMapper;
 import com.jehoon.food.order.service.dataaccess.order.repository.OrderJpaRepository;
-import com.jehoon.food.order.service.domain.entity.Order;
-import com.jehoon.food.order.service.domain.ports.output.repository.OrderRepository;
-import com.jehoon.food.order.service.domain.valueobject.TrackingId;
+import com.jehoon.food.order.domain.entity.Order;
+import com.jehoon.food.order.application.ports.output.repository.OrderRepository;
+import com.jehoon.food.order.domain.valueobject.TrackingId;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,5 +1,5 @@
 {
-    "namespace": "com.jehoon.food.kafka.model.order.avro",
+    "namespace": "com.jehoon.food.common.messaging.kafka.model.order.avro",
     "type": "record",
     "name": "PaymentRequestAvroModel",
     "fields": [

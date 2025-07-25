@@ -1,10 +1,11 @@
 package com.jehoon.food.order.service.messaging.mapper;
 
-import com.jehoon.food.kafka.model.order.avro.PaymentResponseAvroModel;
-import com.jehoon.food.kafka.model.order.avro.RestaurantApprovalResponseAvroModel;
-import com.jehoon.food.order.service.domain.dto.message.PaymentResponse;
-import com.jehoon.food.order.service.domain.dto.message.RestaurantApprovalResponse;
 import org.springframework.stereotype.Component;
+
+import com.jehoon.food.common.messaging.kafka.model.order.avro.PaymentResponseAvroModel;
+import com.jehoon.food.common.messaging.kafka.model.order.avro.RestaurantApprovalResponseAvroModel;
+import com.jehoon.food.order.application.dto.message.PaymentResponse;
+import com.jehoon.food.order.application.dto.message.RestaurantApprovalResponse;
 
 @Component
 public class ResponseMessageMapper {

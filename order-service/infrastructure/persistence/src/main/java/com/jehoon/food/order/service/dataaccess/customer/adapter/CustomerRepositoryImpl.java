@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.jehoon.food.order.service.dataaccess.customer.mapper.CustomerDataAccessMapper;
 import com.jehoon.food.order.service.dataaccess.customer.repository.CustomerJpaRepository;
-import com.jehoon.food.order.service.domain.entity.Customer;
-import com.jehoon.food.order.service.domain.ports.output.repository.CustomerRepository;
+import com.jehoon.food.order.domain.entity.Customer;
+import com.jehoon.food.order.application.ports.output.repository.CustomerRepository;
 
 import lombok.RequiredArgsConstructor;
 

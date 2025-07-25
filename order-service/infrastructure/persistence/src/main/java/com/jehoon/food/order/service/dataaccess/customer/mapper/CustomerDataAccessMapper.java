@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.jehoon.food.domain.valueobject.CustomerId;
 import com.jehoon.food.order.service.dataaccess.customer.entity.CustomerEntity;
-import com.jehoon.food.order.service.domain.entity.Customer;
+import com.jehoon.food.order.domain.entity.Customer;
 
 @Component
 public class CustomerDataAccessMapper {
