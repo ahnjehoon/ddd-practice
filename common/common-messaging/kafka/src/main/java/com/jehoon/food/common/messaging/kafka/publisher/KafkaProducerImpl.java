@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
-import org.apache.avro.specific.SpecificRecordBase;
 import org.springframework.kafka.KafkaException;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -20,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class KafkaProducerImpl<K extends Serializable, V extends SpecificRecordBase> implements KafkaProducer<K, V> {
+public class KafkaProducerImpl<K extends Serializable, V> implements KafkaProducer<K, V> {
     public static final String SENDING_MESSAGE = "메시지={} 를 토픽={}으로 전송 중";
     public static final String ERROR_ON_KAFKA_PRODUCER = "키: {}, 메시지: {} 및 예외: {}로 인한 Kafka 프로듀서 오류";
     public static final String KAFKA_PRODUCER_EXCEPTION = "키: {} 및 메시지: {}로 인한 Kafka 프로듀서 오류";

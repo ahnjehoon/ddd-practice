@@ -5,9 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.jehoon.food.common.messaging.kafka.model.order.avro.PaymentOrderStatus;
-import com.jehoon.food.common.messaging.kafka.model.order.avro.PaymentRequestAvroModel;
-import com.jehoon.food.common.messaging.kafka.model.order.avro.RestaurantApprovalRequestAvroModel;
+import com.jehoon.food.common.messaging.kafka.model.PaymentRequestModel;
+import com.jehoon.food.common.messaging.kafka.model.RestaurantApprovalRequestModel;
 import com.jehoon.food.order.domain.entity.Order;
 import com.jehoon.food.order.domain.event.OrderCancelledEvent;
 import com.jehoon.food.order.domain.event.OrderCreatedEvent;
@@ -16,54 +15,50 @@ import com.jehoon.food.order.domain.event.OrderPaidEvent;
 @Component
 public class RequestMessageMapper {
 
-    public PaymentRequestAvroModel orderCreatedEventToPaymentRequestAvroModel(OrderCreatedEvent orderCreatedEvent) {
+    public PaymentRequestModel orderCreatedEventToPaymentRequestModel(OrderCreatedEvent orderCreatedEvent) {
         Order order = orderCreatedEvent.getOrder();
-        return PaymentRequestAvroModel.newBuilder()
-                .setId(UUID.randomUUID())
-                .setSagaId(UUID.randomUUID())
-                .setCustomerId(order.getCustomerId().getValue())
-                .setOrderId(order.getId().getValue())
-                .setPrice(order.getPrice().getAmount())
-                .setCreatedAt(orderCreatedEvent.getCreatedAt().toInstant())
-                .setPaymentOrderStatus(PaymentOrderStatus.PENDING)
+        return PaymentRequestModel.builder()
+                .id(UUID.randomUUID().toString())
+                .sagaId(UUID.randomUUID().toString())
+                .customerId(order.getCustomerId().getValue().toString())
+                .orderId(order.getId().getValue().toString())
+                .price(order.getPrice().getAmount())
+                .createdAt(orderCreatedEvent.getCreatedAt().toInstant())
+                .paymentOrderStatus(PaymentRequestModel.PaymentOrderStatus.PENDING)
                 .build();
     }
 
-    public PaymentRequestAvroModel orderCancelledEventToPaymentRequestAvroModel(
+    public PaymentRequestModel orderCancelledEventToPaymentRequestModel(
             OrderCancelledEvent orderCancelledEvent) {
         Order order = orderCancelledEvent.getOrder();
-        return PaymentRequestAvroModel.newBuilder()
-                .setId(UUID.randomUUID())
-                .setSagaId(UUID.randomUUID())
-                .setCustomerId(order.getCustomerId().getValue())
-                .setOrderId(order.getId().getValue())
-                .setPrice(order.getPrice().getAmount())
-                .setCreatedAt(orderCancelledEvent.getCreatedAt().toInstant())
-                .setPaymentOrderStatus(PaymentOrderStatus.CANCELLED)
+        return PaymentRequestModel.builder()
+                .id(UUID.randomUUID().toString())
+                .sagaId(UUID.randomUUID().toString())
+                .customerId(order.getCustomerId().getValue().toString())
+                .orderId(order.getId().getValue().toString())
+                .price(order.getPrice().getAmount())
+                .createdAt(orderCancelledEvent.getCreatedAt().toInstant())
+                .paymentOrderStatus(PaymentRequestModel.PaymentOrderStatus.CANCELLED)
                 .build();
     }
 
-    public RestaurantApprovalRequestAvroModel orderPaidEventToRestaurantApprovalRequestAvroModel(
+    public RestaurantApprovalRequestModel orderPaidEventToRestaurantApprovalRequestModel(
             OrderPaidEvent orderPaidEvent) {
         Order order = orderPaidEvent.getOrder();
-        return RestaurantApprovalRequestAvroModel.newBuilder()
-                .setId(UUID.randomUUID())
-                .setSagaId(UUID.randomUUID())
-                .setOrderId(order.getId().getValue())
-                .setRestaurantId(order.getRestaurantId().getValue())
-                .setRestaurantOrderStatus(
-                        com.jehoon.food.common.messaging.kafka.model.order.avro.RestaurantOrderStatus
-                                .valueOf(order.getOrderStatus().name()))
-                .setProducts(order.getOrderItems().stream()
-                        .map(orderItem -> com.jehoon.food.common.messaging.kafka.model.order.avro.Product
-                                .newBuilder()
-                                .setId(orderItem.getProduct().getId().getValue()
-                                        .toString())
-                                .setQuantity(orderItem.getQuantity())
+        return RestaurantApprovalRequestModel.builder()
+                .id(UUID.randomUUID().toString())
+                .sagaId(UUID.randomUUID().toString())
+                .orderId(order.getId().getValue().toString())
+                .restaurantId(order.getRestaurantId().getValue().toString())
+                .restaurantOrderStatus(RestaurantApprovalRequestModel.RestaurantOrderStatus.PAID)
+                .products(order.getOrderItems().stream()
+                        .map(orderItem -> RestaurantApprovalRequestModel.Product.builder()
+                                .id(orderItem.getProduct().getId().getValue().toString())
+                                .quantity(orderItem.getQuantity())
                                 .build())
                         .collect(Collectors.toList()))
-                .setPrice(order.getPrice().getAmount())
-                .setCreatedAt(orderPaidEvent.getCreatedAt().toInstant())
+                .price(order.getPrice().getAmount())
+                .createdAt(orderPaidEvent.getCreatedAt().toInstant())
                 .build();
     }
 }

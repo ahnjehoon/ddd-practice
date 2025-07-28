@@ -2,7 +2,7 @@ package com.jehoon.food.order.service.messaging.publisher.kafka;
 
 import org.springframework.stereotype.Component;
 
-import com.jehoon.food.common.messaging.kafka.model.order.avro.RestaurantApprovalRequestAvroModel;
+import com.jehoon.food.common.messaging.kafka.model.RestaurantApprovalRequestModel;
 import com.jehoon.food.common.messaging.kafka.producer.KafkaProducer;
 import com.jehoon.food.common.messaging.kafka.util.KafkaMessageHelper;
 import com.jehoon.food.order.application.config.OrderServiceConfigData;
@@ -23,7 +23,7 @@ public class PayOrderKafkaMessagePublisher implements OrderPaidRestaurantRequest
 
     private final RequestMessageMapper requestMessageMapper;
     private final OrderServiceConfigData orderServiceConfigData;
-    private final KafkaProducer<String, RestaurantApprovalRequestAvroModel> kafkaProducer;
+    private final KafkaProducer<String, RestaurantApprovalRequestModel> kafkaProducer;
     private final KafkaMessageHelper orderKafkaMessageHelper;
 
     @Override
@@ -31,17 +31,17 @@ public class PayOrderKafkaMessagePublisher implements OrderPaidRestaurantRequest
         String orderId = domainEvent.getOrder().getId().getValue().toString();
 
         try {
-            RestaurantApprovalRequestAvroModel restaurantApprovalRequestAvroModel = requestMessageMapper
-                    .orderPaidEventToRestaurantApprovalRequestAvroModel(domainEvent);
+            RestaurantApprovalRequestModel restaurantApprovalRequestModel = requestMessageMapper
+                    .orderPaidEventToRestaurantApprovalRequestModel(domainEvent);
 
             kafkaProducer.send(orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
                     orderId,
-                    restaurantApprovalRequestAvroModel,
+                    restaurantApprovalRequestModel,
                     orderKafkaMessageHelper
                             .getKafkaCallback(orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
-                                    restaurantApprovalRequestAvroModel,
+                                    restaurantApprovalRequestModel,
                                     orderId,
-                                    restaurantApprovalRequestAvroModel.getClass().getName()));
+                                    restaurantApprovalRequestModel.getClass().getName()));
 
             log.info(SUCCESS_MESSAGE, orderId);
         } catch (Exception e) {

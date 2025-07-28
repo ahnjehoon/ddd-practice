@@ -2,7 +2,7 @@ package com.jehoon.food.order.service.messaging.publisher.kafka;
 
 import org.springframework.stereotype.Component;
 
-import com.jehoon.food.common.messaging.kafka.model.order.avro.PaymentRequestAvroModel;
+import com.jehoon.food.common.messaging.kafka.model.PaymentRequestModel;
 import com.jehoon.food.common.messaging.kafka.producer.KafkaProducer;
 import com.jehoon.food.common.messaging.kafka.util.KafkaMessageHelper;
 import com.jehoon.food.order.application.config.OrderServiceConfigData;
@@ -24,7 +24,7 @@ public class CreateOrderKafkaMessagePublisher implements OrderCreatedPaymentRequ
 
     private final RequestMessageMapper requestMessageMapper;
     private final OrderServiceConfigData orderServiceConfigData;
-    private final KafkaProducer<String, PaymentRequestAvroModel> kafkaProducer;
+    private final KafkaProducer<String, PaymentRequestModel> kafkaProducer;
     private final KafkaMessageHelper orderKafkaMessageHelper;
 
     @Override
@@ -33,19 +33,19 @@ public class CreateOrderKafkaMessagePublisher implements OrderCreatedPaymentRequ
         log.info(RECEIVED_EVENT_MESSAGE, orderId);
 
         try {
-            PaymentRequestAvroModel paymentRequestAvroModel = requestMessageMapper
-                    .orderCreatedEventToPaymentRequestAvroModel(domainEvent);
+            PaymentRequestModel paymentRequestModel = requestMessageMapper
+                    .orderCreatedEventToPaymentRequestModel(domainEvent);
 
             kafkaProducer.send(orderServiceConfigData.getPaymentRequestTopicName(),
                     orderId,
-                    paymentRequestAvroModel,
+                    paymentRequestModel,
                     orderKafkaMessageHelper
                             .getKafkaCallback(orderServiceConfigData.getPaymentResponseTopicName(),
-                                    paymentRequestAvroModel,
+                                    paymentRequestModel,
                                     orderId,
-                                    paymentRequestAvroModel.getClass().getName()));
+                                    paymentRequestModel.getClass().getName()));
 
-            log.info(SUCCESS_MESSAGE, paymentRequestAvroModel.getOrderId());
+            log.info(SUCCESS_MESSAGE, paymentRequestModel.getOrderId());
         } catch (Exception e) {
             log.error(ERROR_MESSAGE, orderId, e.getMessage());
         }

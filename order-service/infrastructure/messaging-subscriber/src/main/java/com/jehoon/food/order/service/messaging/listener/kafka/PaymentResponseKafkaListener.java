@@ -1,7 +1,6 @@
 package com.jehoon.food.order.service.messaging.listener.kafka;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -10,8 +9,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import com.jehoon.food.common.messaging.kafka.consumer.KafkaConsumer;
-import com.jehoon.food.common.messaging.kafka.model.order.avro.PaymentResponseAvroModel;
-import com.jehoon.food.common.messaging.kafka.model.order.avro.PaymentStatus;
+import com.jehoon.food.common.messaging.kafka.model.PaymentResponseModel;
 import com.jehoon.food.order.application.ports.input.message.listener.payment.PaymentResponseMessageListener;
 import com.jehoon.food.order.service.messaging.mapper.ResponseMessageMapper;
 
@@ -21,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class PaymentResponseKafkaListener implements KafkaConsumer<PaymentResponseAvroModel> {
+public class PaymentResponseKafkaListener implements KafkaConsumer<PaymentResponseModel> {
     public static final String PAYMENT_RESPONSES_RECEIVED = "키: {}, 파티션: {}, 오프셋: {}으로 {} 개의 결제 응답을 수신했습니다";
     public static final String PROCESSING_SUCCESSFUL_PAYMENT = "주문 ID: {}에 대한 성공적인 결제를 처리 중입니다";
     public static final String PROCESSING_UNSUCCESSFUL_PAYMENT = "주문 ID: {}에 대한 실패한 결제를 처리 중입니다";
@@ -31,7 +29,7 @@ public class PaymentResponseKafkaListener implements KafkaConsumer<PaymentRespon
 
     @Override
     @KafkaListener(id = "${kafka-consumer-config.payment-consumer-group-id}", topics = "${order-service.payment-response-topic-name}")
-    public void receive(@Payload List<PaymentResponseAvroModel> messages,
+    public void receive(@Payload List<PaymentResponseModel> messages,
             @Header(KafkaHeaders.RECEIVED_KEY) List<String> keys,
             @Header(KafkaHeaders.RECEIVED_PARTITION) List<Integer> partitions,
             @Header(KafkaHeaders.OFFSET) List<Long> offsets) {
@@ -45,22 +43,23 @@ public class PaymentResponseKafkaListener implements KafkaConsumer<PaymentRespon
         messages.forEach(this::processPaymentResponse);
     }
 
-    private void processPaymentResponse(PaymentResponseAvroModel paymentResponseAvroModel) {
-        PaymentStatus paymentStatus = paymentResponseAvroModel.getPaymentStatus();
-        UUID orderId = paymentResponseAvroModel.getOrderId();
+    private void processPaymentResponse(PaymentResponseModel paymentResponseModel) {
+        PaymentResponseModel.PaymentStatus paymentStatus = paymentResponseModel.getPaymentStatus();
+        String orderId = paymentResponseModel.getOrderId();
 
-        if (PaymentStatus.COMPLETED == paymentStatus) {
+        if (PaymentResponseModel.PaymentStatus.COMPLETED == paymentStatus) {
             log.info(PROCESSING_SUCCESSFUL_PAYMENT, orderId);
             paymentResponseMessageListener.paymentCompleted(
-                    responseMessageMapper.paymentResponseAvroModelToPaymentResponse(paymentResponseAvroModel));
+                    responseMessageMapper.paymentResponseModelToPaymentResponse(paymentResponseModel));
         } else if (isPaymentUnsuccessful(paymentStatus)) {
             log.info(PROCESSING_UNSUCCESSFUL_PAYMENT, orderId);
             paymentResponseMessageListener.paymentCancelled(
-                    responseMessageMapper.paymentResponseAvroModelToPaymentResponse(paymentResponseAvroModel));
+                    responseMessageMapper.paymentResponseModelToPaymentResponse(paymentResponseModel));
         }
     }
 
-    private boolean isPaymentUnsuccessful(PaymentStatus paymentStatus) {
-        return PaymentStatus.CANCELLED == paymentStatus || PaymentStatus.FAILED == paymentStatus;
+    private boolean isPaymentUnsuccessful(PaymentResponseModel.PaymentStatus paymentStatus) {
+        return PaymentResponseModel.PaymentStatus.CANCELLED == paymentStatus || 
+               PaymentResponseModel.PaymentStatus.FAILED == paymentStatus;
     }
 }

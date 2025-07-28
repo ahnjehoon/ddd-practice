@@ -1,12 +1,11 @@
 plugins {
     id 'java-library'
-    id 'com.github.davidmc24.gradle.plugin.avro' version '1.9.1'
 }
 
 sourceSets {
     main {
         java {
-            srcDirs 'src/main/java', 'build/generated-main-avro-java'
+            srcDirs 'src/main/java'
         }
     }
 }
@@ -19,26 +18,13 @@ dependencies {
     api 'org.springframework.boot:spring-boot-starter'
     api 'org.springframework.kafka:spring-kafka'
     
-    // Avro 관련
-    api 'org.apache.avro:avro:1.11.4'
-    api 'io.confluent:kafka-avro-serializer:7.8.3'
+    // JSON 처리를 위한 Jackson
+    api 'com.fasterxml.jackson.core:jackson-databind'
     
     // 테스트 의존성
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
 } 
-
-// Avro 코드 생성 설정
-avro {
-    stringType = 'String'
-    outputCharacterEncoding = 'UTF-8'
-}
-
-// Avro 스키마 파일 위치 설정
-generateAvroJava {
-    source 'src/main/resources/avro'
-    outputDir file('build/generated-main-avro-java')
-}
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
