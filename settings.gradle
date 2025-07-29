@@ -14,3 +14,5 @@ include 'order-service:infrastructure:api'
 include 'order-service:infrastructure:persistence'
 include 'order-service:infrastructure:messaging-publisher'
 include 'order-service:infrastructure:messaging-subscriber'
+
+include 'restaurant-service:domain'
